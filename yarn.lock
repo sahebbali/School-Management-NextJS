@@ -207,6 +207,11 @@
   resolved "https://registry.npmjs.org/@popperjs/core/-/core-2.11.8.tgz#6b79032e760a0899cd4204710beede972a3a185f"
   integrity sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==
 
+"@prisma/client@^6.0.1":
+  version "6.0.1"
+  resolved "https://registry.npmjs.org/@prisma/client/-/client-6.0.1.tgz#e24c5a44fb46d04a92426879bd9f8a2c28338420"
+  integrity sha512-60w7kL6bUxz7M6Gs/V+OWMhwy94FshpngVmOY05TmGD0Lhk+Ac0ZgtjlL6Wll9TD4G03t4Sq1wZekNVy+Xdlbg==
+
 "@restart/hooks@^0.4.7":
   version "0.4.16"
   resolved "https://registry.npmjs.org/@restart/hooks/-/hooks-0.4.16.tgz#95ae8ac1cc7e2bd4fed5e39800ff85604c6d59fb"
@@ -693,7 +698,7 @@ clsx@^1.2.1:
   resolved "https://registry.npmjs.org/clsx/-/clsx-1.2.1.tgz#0ddc4a20a549b59c93a4116bb26f5294ca17dc12"
   integrity sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==
 
-clsx@^2.0.0:
+clsx@^2.0.0, clsx@^2.1.0:
   version "2.1.1"
   resolved "https://registry.npmjs.org/clsx/-/clsx-2.1.1.tgz#eed397c9fd8bd882bfb18deab7102049a2f32999"
   integrity sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==
@@ -2487,6 +2492,13 @@ react-smooth@^4.0.0:
     fast-equals "^5.0.1"
     prop-types "^15.8.1"
     react-transition-group "^4.4.5"
+
+react-toastify@^10.0.6:
+  version "10.0.6"
+  resolved "https://registry.npmjs.org/react-toastify/-/react-toastify-10.0.6.tgz#19c364b1150f495522c738d592d1dcc93879ade1"
+  integrity sha512-yYjp+omCDf9lhZcrZHKbSq7YMuK0zcYkDFTzfRFgTXkTFHZ1ToxwAonzA4JI5CxA91JpjFLmwEsZEgfYfOqI1A==
+  dependencies:
+    clsx "^2.1.0"
 
 react-transition-group@^4.4.5:
   version "4.4.5"
