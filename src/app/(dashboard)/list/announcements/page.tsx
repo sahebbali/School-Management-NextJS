@@ -12,6 +12,7 @@ type Announcement = {
   date: string;
 };
 
+
 const columns = [
   {
     header: "Title",
