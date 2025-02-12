@@ -34,7 +34,7 @@
     "@clerk/types" "^4.45.1"
     tslib "2.4.1"
 
-"@clerk/elements@^0.22.2":
+"@clerk/elements@^0.22.21":
   version "0.22.21"
   resolved "https://registry.npmjs.org/@clerk/elements/-/elements-0.22.21.tgz"
   integrity sha512-yuvvPT/Wpbcl1yaLSPF7lpxF1x9QpV42PmTg5yp3hHkZBdA+/lQfoy6kfzevqyvIwOSPv8wIbt9tOwr7rQ3Hpg==
