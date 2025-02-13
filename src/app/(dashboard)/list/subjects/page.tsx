@@ -16,6 +16,7 @@ const SubjectListPage = async ({
   searchParams: { [key: string]: string | undefined };
 }) => {
   const { sessionClaims } = auth();
+  console.log({sessionClaims})
   const role = (sessionClaims?.metadata as { role?: string })?.role;
 
   const columns = [
