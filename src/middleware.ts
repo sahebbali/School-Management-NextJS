@@ -7,31 +7,30 @@ const matchers = Object.keys(routeAccessMap).map((route) => ({
   allowedRoles: routeAccessMap[route],
 }));
 
-console.log({ matchers });
-
 export default clerkMiddleware(async (auth, req) => {
-  // Await the auth() function
   const authObject = await auth();
-  console.log("Auth object:", authObject);
-
-  const { sessionClaims } = authObject;
-  console.log("Middleware sessionClaims:", { sessionClaims });
-
+  const { userId, sessionClaims } = authObject;
   const role = (sessionClaims?.metadata as { role?: string })?.role;
-  console.log({ role });
+
+  console.log("middleware Role:", { role, userId });
 
   for (const { matcher, allowedRoles } of matchers) {
     if (matcher(req) && !allowedRoles.includes(role!)) {
       return NextResponse.redirect(new URL(`/${role}`, req.url));
     }
   }
+
+  // Add userId and role as headers
+  const response = NextResponse.next();
+  response.headers.set("x-user-id", userId || "unknown");
+  response.headers.set("x-user-role", role || "unknown");
+
+  return response;
 });
 
 export const config = {
   matcher: [
-    // Skip Next.js internals and all static files, unless found in search params
     "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
-    // Always run for API routes
     "/(api|trpc)(.*)",
   ],
 };
