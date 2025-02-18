@@ -17,7 +17,7 @@ const AnnouncementListPage = async ({
   const { userId, sessionClaims } = await auth();
   const role = (sessionClaims?.metadata as { role?: string })?.role;
   // const {userId, role}= await UserInfo()
-  console.log("hello",userId, role)
+  console.log("hello", userId, role);
   const currentUserId = userId;
 
   const columns = [
@@ -71,7 +71,7 @@ const AnnouncementListPage = async ({
   const p = page ? parseInt(page) : 1;
 
   // URL PARAMS CONDITION
-console.log({queryParams})
+  console.log({ queryParams });
   const query: Prisma.AnnouncementWhereInput = {};
 
   if (queryParams) {
@@ -115,7 +115,7 @@ console.log({queryParams})
     prisma.announcement.count({ where: query }),
   ]);
 
-  console.log({data})
+  // console.log({data})
   return (
     <div className="bg-white p-4 rounded-md flex-1 m-4 mt-0">
       {/* TOP */}
