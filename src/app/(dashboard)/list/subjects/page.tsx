@@ -7,6 +7,7 @@ import { ITEM_PER_PAGE } from "@/lib/settings";
 import { Prisma, Subject, Teacher } from "@prisma/client";
 import Image from "next/image";
 import { auth } from "@clerk/nextjs/server";
+import { headers } from "next/headers";
 
 type SubjectList = Subject & { teachers: Teacher[] };
 
@@ -15,9 +16,11 @@ const SubjectListPage = async ({
 }: {
   searchParams: { [key: string]: string | undefined };
 }) => {
-  const { sessionClaims } = auth();
-  console.log({sessionClaims})
-  const role = (sessionClaims?.metadata as { role?: string })?.role;
+  // const { sessionClaims } = auth();
+  // const role = (sessionClaims?.metadata as { role?: string })?.role;
+     const headersList = headers();
+      const userId = headersList.get("x-user-id");
+      const role = headersList.get("x-user-role");
 
   const columns = [
     {
@@ -90,7 +93,8 @@ const SubjectListPage = async ({
     }),
     prisma.subject.count({ where: query }),
   ]);
-
+// console.log("subject Data",data)
+// console.log("subject Data",count)
   return (
     <div className="bg-white p-4 rounded-md flex-1 m-4 mt-0">
       {/* TOP */}
