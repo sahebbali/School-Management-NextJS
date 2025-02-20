@@ -21,7 +21,7 @@ const deleteActionMap = {
   teacher: deleteTeacher,
   student: deleteStudent,
   exam: deleteExam,
-// TODO: OTHER DELETE ACTIONS
+  // TODO: OTHER DELETE ACTIONS
   parent: deleteSubject,
   lesson: deleteSubject,
   assignment: deleteSubject,
@@ -128,7 +128,7 @@ const FormModal = ({
     });
 
     const router = useRouter();
-console.log({state})
+    console.log({ state });
     useEffect(() => {
       if (state.success) {
         toast(`${table} has been deleted!`);
@@ -136,7 +136,7 @@ console.log({state})
         router.refresh();
       }
     }, [state, router]);
-
+    console.log("delete");
     return type === "delete" && id ? (
       <form action={formAction} className="p-4 flex flex-col gap-4">
         <input type="text | number" name="id" value={id} hidden />
