@@ -128,7 +128,7 @@ const FormModal = ({
     });
 
     const router = useRouter();
-
+console.log({state})
     useEffect(() => {
       if (state.success) {
         toast(`${table} has been deleted!`);
