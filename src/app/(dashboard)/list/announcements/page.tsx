@@ -6,7 +6,8 @@ import prisma from "@/lib/prisma";
 import { ITEM_PER_PAGE } from "@/lib/settings";
 import { Announcement, Class, Prisma } from "@prisma/client";
 import Image from "next/image";
-import { auth } from "@clerk/nextjs/server";
+import { headers } from "next/headers";
+
 
 type AnnouncementList = Announcement & { class: Class };
 const AnnouncementListPage = async ({
@@ -14,12 +15,14 @@ const AnnouncementListPage = async ({
 }: {
   searchParams: { [key: string]: string | undefined };
 }) => {
-  const { userId, sessionClaims } = await auth();
-  const role = (sessionClaims?.metadata as { role?: string })?.role;
-  // const {userId, role}= await UserInfo()
-  console.log("hello", userId, role);
+  
+  // const { userId, sessionClaims } = auth();
+  // const role = (sessionClaims?.metadata as { role?: string })?.role;
+  const headersList = headers();
+  const userId = headersList.get("x-user-id");
+  const role = headersList.get("x-user-role");
   const currentUserId = userId;
-
+  
   const columns = [
     {
       header: "Title",
@@ -43,7 +46,7 @@ const AnnouncementListPage = async ({
         ]
       : []),
   ];
-
+  
   const renderRow = (item: AnnouncementList) => (
     <tr
       key={item.id}
@@ -71,7 +74,7 @@ const AnnouncementListPage = async ({
   const p = page ? parseInt(page) : 1;
 
   // URL PARAMS CONDITION
-  console.log({ queryParams });
+
   const query: Prisma.AnnouncementWhereInput = {};
 
   if (queryParams) {
@@ -115,7 +118,6 @@ const AnnouncementListPage = async ({
     prisma.announcement.count({ where: query }),
   ]);
 
-  // console.log({data})
   return (
     <div className="bg-white p-4 rounded-md flex-1 m-4 mt-0">
       {/* TOP */}
