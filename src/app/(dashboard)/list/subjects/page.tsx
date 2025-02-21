@@ -6,7 +6,6 @@ import prisma from "@/lib/prisma";
 import { ITEM_PER_PAGE } from "@/lib/settings";
 import { Prisma, Subject, Teacher } from "@prisma/client";
 import Image from "next/image";
-import { auth } from "@clerk/nextjs/server";
 import { headers } from "next/headers";
 
 type SubjectList = Subject & { teachers: Teacher[] };
@@ -19,7 +18,7 @@ const SubjectListPage = async ({
   // const { sessionClaims } = auth();
   // const role = (sessionClaims?.metadata as { role?: string })?.role;
      const headersList = headers();
-      const userId = headersList.get("x-user-id");
+      // const userId = headersList.get("x-user-id");
       const role = headersList.get("x-user-role");
 
   const columns = [
