@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ITEM_PER_PAGE } from "@/lib/settings";
 import { auth } from "@clerk/nextjs/server";
+import { headers } from "next/headers";
 
 type TeacherList = Teacher & { subjects: Subject[] } & { classes: Class[] };
 
@@ -16,9 +17,13 @@ const TeacherListPage = async ({
 }: {
   searchParams: { [key: string]: string | undefined };
 }) => {
-  const { userId, sessionId, sessionClaims } = auth();
-  console.log({ userId, sessionId, sessionClaims });
-  const role = (sessionClaims?.metadata as { role?: string })?.role;
+  // const { userId, sessionId, sessionClaims } = auth();
+  // console.log({ userId, sessionId, sessionClaims });
+  // const role = (sessionClaims?.metadata as { role?: string })?.role;
+    const headersList = headers();
+    // const userId = headersList.get("x-user-id");
+    const role = headersList.get("x-user-role");
+    console.log("techer page role",role)
   const columns = [
     {
       header: "Info",
