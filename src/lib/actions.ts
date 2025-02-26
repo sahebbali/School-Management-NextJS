@@ -142,14 +142,14 @@ export const createTeacher = async (
   data: TeacherSchema
 ) => {
   try {
-    console.log("server action data",data)
+    console.log("server action data", data);
     const clerk = await clerkClient(); // ✅ Await the function call
     const user = await clerk.users.createUser({
       username: data.username,
       password: data.password,
       firstName: data.name,
       lastName: data.surname,
-      publicMetadata:{role:"teacher"}
+      publicMetadata: { role: "teacher" },
     });
 
     await prisma.teacher.create({
@@ -261,7 +261,7 @@ export const createStudent = async (
       where: { id: data.classId },
       include: { _count: { select: { students: true } } },
     });
-
+    console.log({ classItem });
     if (classItem && classItem.capacity === classItem._count.students) {
       return { success: false, error: true };
     }
@@ -271,7 +271,7 @@ export const createStudent = async (
       password: data.password,
       firstName: data.name,
       lastName: data.surname,
-      publicMetadata:{role:"student"}
+      publicMetadata: { role: "student" },
     });
 
     await prisma.student.create({
@@ -316,7 +316,7 @@ export const updateStudent = async (
       firstName: data.name,
       lastName: data.surname,
     });
-console.log({user})
+    console.log({ user });
     await prisma.student.update({
       where: {
         id: data.id,
