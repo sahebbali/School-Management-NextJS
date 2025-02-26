@@ -316,7 +316,7 @@ export const updateStudent = async (
       firstName: data.name,
       lastName: data.surname,
     });
-
+console.log({user})
     await prisma.student.update({
       where: {
         id: data.id,
